@@ -13,7 +13,7 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
-scoreboard.write_new_score()
+
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -25,8 +25,7 @@ game_is_on = True
 while game_is_on:
     screen.update()
     snake.move()
-    time.sleep(.4)
-
+    time.sleep(.09)
 
     if snake.head.distance(food) <= 10:
         print("hit hit")
@@ -35,25 +34,23 @@ while game_is_on:
         snake.add_segment()
 
     if abs(snake.head.xcor()) >= 300 or abs(snake.head.ycor()) >= 300:
-        print("game over")
-        game_is_on = False
-        scoreboard.game_over()
-        time.sleep(2)
-        screen.bye()
+        # print("game over")
+        scoreboard.reset_game()
+        snake.reset_snake()
+        # game_is_on = False
+        # scoreboard.game_over()
+        # time.sleep(2)
+        # screen.bye()
 
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            print("game over")
-            game_is_on = False
-            scoreboard.game_over()
-            time.sleep(2)
-            screen.bye()
-
-
-
-
-
-
-
+            # print("game over")
+            scoreboard.reset_game()
+            snake.reset_snake()
+            # game_is_on = False
+            # scoreboard.game_over()
+            # time.sleep(2)
+            # screen.bye()
 
 screen.exitonclick()
+

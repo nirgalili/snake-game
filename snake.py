@@ -1,4 +1,5 @@
 from turtle import Turtle
+import time
 STARTING_POSITION = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_DIST = 20
 UP = 90
@@ -55,6 +56,15 @@ class Snake():
         new_seg.color("white")
         new_seg.goto(seg_position)
         self.segments.append(new_seg)
+
+    def reset_snake(self):
+        time.sleep(1)
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
 
 
 
