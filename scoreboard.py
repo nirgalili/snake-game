@@ -12,6 +12,8 @@ class Scoreboard(Turtle):
         self.goto(0, 280)
         self.score = 0
         self.high_score = 0
+        with open("data.txt") as file:
+            self.high_score = int(file.read())
         self.write_new_score()
 
     def write_new_score(self):
@@ -19,13 +21,12 @@ class Scoreboard(Turtle):
         argument = f"Score: {self.score} High Score: {self.high_score}"
         self.write(argument, False, "center", FONT)
 
-    # def game_over(self):
-    #     self.home()
-    #     self.write("Game Over", False, "center", FONT)
-
     def reset_game(self):
         if self.score > self.high_score:
             self.high_score = self.score
+            print(type(self.score))
+            with open("data.txt", mode="w") as file:
+                file.write(f"{self.high_score}")
         self.score = 0
         self.write_new_score()
 
